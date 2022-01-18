@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { collectionData, Firestore } from '@angular/fire/firestore';
-import { addDoc, collection } from 'firebase/firestore';
+import {
+  Firestore, collectionData, deleteDoc, doc, addDoc, collection
+} from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Item } from '../model/item';
 
@@ -19,5 +20,9 @@ export class ItemService {
     return collectionData(
         collection(this.firestore, 'items'), {idField: 'itemId'}
       ) as Observable<Item[]>;
+  }
+
+  async deleteItem(id: string) {
+    await deleteDoc(doc(this.firestore, `items/${id}`));
   }
 }

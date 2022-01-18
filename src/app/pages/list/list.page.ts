@@ -14,7 +14,7 @@ export class ListPage implements OnInit {
   items: Observable<Item[]>;
   
   constructor(
-    private itemService: ItemService,
+    public itemService: ItemService,
     private router: Router
   ) {
     this.items = this.itemService.getItems();

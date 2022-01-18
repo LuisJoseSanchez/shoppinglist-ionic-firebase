@@ -10,7 +10,8 @@
       <img [src]="item.imageUrl">
     </ion-avatar>
     <ion-label>{{ item.name }} <strong>{{ item.quantity }}</strong></ion-label>
-    <ion-icon name="close-circle"></ion-icon>
+    <ion-icon name="close-circle" (click)="itemService.deleteItem(item.itemId)">
+    </ion-icon>
   </ion-chip>
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button (click)="addItem()" color="success">
