@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { Item } from 'src/app/model/item';
+import { ItemService } from 'src/app/services/item.service';
 
 @Component({
   selector: 'app-list',
@@ -7,9 +11,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListPage implements OnInit {
 
-  constructor() { }
-
-  ngOnInit() {
+  items: Observable<Item[]>;
+  
+  constructor(
+    private itemService: ItemService,
+    private router: Router
+  ) {
+    this.items = this.itemService.getItems();
   }
 
+  ngOnInit() { }
+
+  addItem() {
+    this.router.navigateByUrl('/create-item');
+  }
 }
