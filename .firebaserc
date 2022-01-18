@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "shopping-list-c272a": {
+      "hosting": {
+        "app": [
+          "shopping-list-c272a"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "shopping-list-c272a"
+  }
+}
