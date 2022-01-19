@@ -12,7 +12,7 @@ import { ItemService } from 'src/app/services/item.service';
 export class ListPage implements OnInit {
 
   items: Observable<Item[]>;
-  
+
   constructor(
     public itemService: ItemService,
     private router: Router
@@ -25,4 +25,9 @@ export class ListPage implements OnInit {
   addItem() {
     this.router.navigateByUrl('/create-item');
   }
+
+  goEditItem(id: string) {
+    this.router.navigateByUrl(`edit-item/${id}`);
+  }
+
 }

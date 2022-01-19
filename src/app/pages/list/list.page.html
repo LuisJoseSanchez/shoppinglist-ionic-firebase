@@ -9,10 +9,20 @@
     <ion-avatar>
       <img [src]="item.imageUrl">
     </ion-avatar>
+
     <ion-label>{{ item.name }} <strong>{{ item.quantity }}</strong></ion-label>
-    <ion-icon name="close-circle" (click)="itemService.deleteItem(item.itemId)">
-    </ion-icon>
+
+    <span title="Editar elemento">
+      <ion-icon name="pencil" (click)="goEditItem(item.itemId)">
+      </ion-icon>
+    </span>
+
+    <span title="Borrar elemento">
+      <ion-icon name="close-circle" (click)="itemService.deleteItem(item.itemId)">
+      </ion-icon>
+    </span>
   </ion-chip>
+
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button (click)="addItem()" color="success">
       <ion-icon name="add"></ion-icon>
