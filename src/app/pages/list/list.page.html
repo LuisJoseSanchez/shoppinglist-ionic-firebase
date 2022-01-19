@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Lista de la compra</ion-title>
+    <ion-title>{{ pageTitle }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -12,13 +12,16 @@
 
     <ion-label>{{ item.name }} <strong>{{ item.quantity }}</strong></ion-label>
 
-    <span title="Editar elemento">
-      <ion-icon name="pencil" (click)="goEditItem(item.itemId)">
+    <span
+      title="Editar elemento"
+      (click)="goEditItem(item.itemId)">
+      <ion-icon name="pencil">
       </ion-icon>
     </span>
 
-    <span title="Borrar elemento">
-      <ion-icon name="close-circle" (click)="itemService.deleteItem(item.itemId)">
+    <span
+      title="Borrar elemento" (click)="itemService.deleteItem(item.itemId)">
+      <ion-icon name="close-circle">
       </ion-icon>
     </span>
   </ion-chip>
