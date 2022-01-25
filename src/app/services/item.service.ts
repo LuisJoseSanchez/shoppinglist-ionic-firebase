@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {
-  Firestore, collectionData, deleteDoc, doc, addDoc, collection, updateDoc, docData
+  Firestore, collectionData, deleteDoc, doc, addDoc, collection, docData, setDoc
 } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Item } from '../model/item';
@@ -23,7 +23,7 @@ export class ItemService {
 
   getItem(id: string): Observable<Item> {
     const docRef = doc(this.firestore, `items/${id}`);
-    return docData(docRef, { idField: 'id' }) as Observable<Item>;
+    return docData(docRef, { idField: 'itemId' }) as Observable<Item>;
   }
 
   async deleteItem(id: string) {
@@ -31,10 +31,7 @@ export class ItemService {
   }
 
   async updateItem(item: Item) {
-    const docRef = doc(this.firestore, `notes/${item.itemId}`);
-    await updateDoc(
-      docRef, {name: item.name, quantity: item.quantity, imageUrl: item.imageUrl}
-    );
+    await setDoc(doc(this.firestore, `items/${item.itemId}`), item);
   }
   
 }
