@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from 'firebase/auth';
+import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -9,34 +10,34 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginPage implements OnInit {
 
-  user: User;
+  email: string;
+  password: string;
 
   constructor(
-    private authService: AuthService
+    public authService: AuthService,
+    private router: Router,
+    private alertController: AlertController
   ) { }
 
   ngOnInit() { }
 
-  login() {
-    this.authService.login("alan@gmail.com", "123456")
-      .then(
-        data => this.user = data.user
-      )
-      .catch(
-        error => {
-          console.error('no logueado');
-          console.error(error);
-        }
-      );
-    // this.authService.getCurrentUser().subscribe(
-    //   data => {
-    //     this.user = data;
-    //     console.log('logueado');
-    //   },
-    //   error => {
-    //     console.error('no logueado');
-    //     console.error(error);
-    //   }
-    // );
+  async login() {
+    const connectionSuccess = await this.authService.login(this.email, this.password);
+    if (connectionSuccess) {
+      this.router.navigateByUrl('/list');
+    } else {
+      this.presentAlert();
+    }
+  }
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: 'Conexión fallida',
+      subHeader: 'No se ha podido acceder a la cuenta.',
+      message: 'El correo electrónico y la contraseña proporcionados no son válidos.',
+      buttons: ['Aceptar']
+    });
+
+    await alert.present();
   }
 }
