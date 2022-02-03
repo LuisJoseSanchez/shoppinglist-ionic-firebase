@@ -3,7 +3,8 @@ import {
   Auth,
   signInWithEmailAndPassword,
   User,
-  signOut
+  signOut,
+  getAuth
 } from '@angular/fire/auth';
 
 @Injectable({
@@ -49,7 +50,8 @@ export class AuthService {
   // }
 
   getCurrentUser(): User {
-    return this.user;
+    return getAuth().currentUser;
+    //return this.user;
   }
 
   logout() {
