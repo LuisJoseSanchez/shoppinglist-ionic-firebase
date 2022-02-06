@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import {
   Auth,
+  getAuth,
   signInWithEmailAndPassword,
-  User,
   signOut,
-  getAuth
+  User  
 } from '@angular/fire/auth';
 
 @Injectable({
@@ -12,15 +12,16 @@ import {
 })
 export class AuthService {
 
-  user: User;
+  // user: User;
 
   constructor(private auth: Auth) { }
 
   login(email: string, password: string): Promise<boolean> {
     return signInWithEmailAndPassword(this.auth, email, password)
       .then(
-        data => {
-          this.user = data.user;
+        () => {
+        // data => {
+          // this.user = data.user;
           return true;
         },
         error => {
