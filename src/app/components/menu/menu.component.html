@@ -6,7 +6,10 @@
   </ion-header>
   <ion-content>
     <ion-list>
-      <ion-item *ngIf="authService.getCurrentUser()" (click)="logout()">
+      <ion-item
+        *ngIf="authService.getCurrentUser()"
+        (click)="authService.logout()"
+        href="/login">
         <ion-icon name="exit" slot="start"></ion-icon>
         <ion-label>Salir de la cuenta</ion-label>
       </ion-item>
