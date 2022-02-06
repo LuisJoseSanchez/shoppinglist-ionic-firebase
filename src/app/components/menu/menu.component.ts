@@ -9,16 +9,8 @@ import { Router } from '@angular/router';
 })
 export class MenuComponent implements OnInit {
 
-  constructor(
-    public authService: AuthService,
-    private router: Router,
-  ) { }
+  constructor(public authService: AuthService) { }
 
   ngOnInit() {}
 
-  logout() {
-    // this.authService.logout();
-    // this.router.navigateByUrl('/login');
-    // window.location.reload();
-  }
 }

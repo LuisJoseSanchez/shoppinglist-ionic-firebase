@@ -25,7 +25,6 @@ export class LoginPage implements OnInit {
     const connectionSuccess = await this.authService.login(this.email, this.password);
     if (connectionSuccess) {
       this.router.navigateByUrl('/list');
-      // window.location.reload();
     } else {
       this.presentAlert();
     }
