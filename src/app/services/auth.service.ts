@@ -3,6 +3,7 @@ import {
   Auth,
   createUserWithEmailAndPassword,
   getAuth,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signOut,
   User,  
@@ -63,5 +64,10 @@ export class AuthService {
 
   register(email: string, password: string): Promise<UserCredential> {
     return createUserWithEmailAndPassword(this.auth, email, password);
+  }
+
+  resetPassword(email: string): Promise<void> {
+    return sendPasswordResetEmail(this.auth, email);
+    // return this.afAuth.auth.sendPasswordResetEmail(email);
   }
 }
