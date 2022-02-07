@@ -44,6 +44,11 @@ const routes: Routes = [
                           data: { authGuardPipe: redirectLoggedIntoList }
   },
   {
+    path: 'register',
+    loadChildren: () => import('./pages/register/register.module')
+                          .then( m => m.RegisterPageModule)
+  },
+  {
     path: '**',
     redirectTo: 'list',
     pathMatch: 'full'

@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import {
   Auth,
+  createUserWithEmailAndPassword,
   getAuth,
   signInWithEmailAndPassword,
   signOut,
-  User  
+  User,  
+  UserCredential
 } from '@angular/fire/auth';
 
 @Injectable({
@@ -57,5 +59,9 @@ export class AuthService {
 
   logout() {
     signOut(this.auth);
+  }
+
+  register(email: string, password: string): Promise<UserCredential> {
+    return createUserWithEmailAndPassword(this.auth, email, password);
   }
 }
